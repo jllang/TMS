@@ -1,0 +1,20 @@
+name:                TMS
+version:             0.1.0.0
+-- synopsis:
+-- description:
+homepage:            https://github.com/jllang/TMS#readme
+license:             MIT
+license-file:        LICENSE
+author:              John Lång
+maintainer:          jllang@cs.helsinki.fi
+copyright:           2018 John Lång
+category:            Misc
+build-type:          Simple
+cabal-version:       >=1.10
+extra-source-files:  README.md
+
+executable TMS
+  hs-source-dirs:      src
+  main-is:             Main.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
