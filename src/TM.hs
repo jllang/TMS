@@ -172,11 +172,12 @@ module TM where
                 Just (s, d, q') -> TM tt (Cfg q' (write t s d))
                 Nothing         -> tm
         
-    -- Runs the given Turing Machine until it halts or the given maximum number 
-    -- of steps is exceeded.
-    run :: TuringMachine a b -> Int -> IO ()
-    run tm n =
-        let run' tm@(TM _ cfg@(Cfg q _)) k
+    -- Constructs and runs a Turing Machine with the given input until it halts 
+    -- or the given maximum number of steps is exceeded.
+    run :: (Label a, Label b) => (c -> TuringMachine a b) -> c -> Int -> IO ()
+    run f x n =
+        let tm = f x
+            run' tm@(TM _ cfg@(Cfg q _)) k
                 | q == Halt || k == n   = 
                     trace "Final Configuration:" $ ("    ") ++ (show cfg)
                 | otherwise = 
